@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class PresentingResultsTest {
     @Test
     public void commonFirstNamesOrderedTest() {
-        StoreNames storeName = new StoreNames(new HashMap<>(), new HashMap<>(), new HashMap<>());
+        StoreNames storeName = new StoreNames(new LinkedHashMap<>(), new LinkedHashMap<>(), new LinkedHashMap<>());
         storeName.getFirstNames().put("Megan", 3l);
         storeName.getFirstNames().put("Jhon", 1l);
         storeName.getFirstNames().put("Mary", 8l);
@@ -27,7 +27,7 @@ public class PresentingResultsTest {
 
     @Test
     public void commonLastNamesOrderedTest() {
-        StoreNames storeName = new StoreNames(new HashMap<>(), new HashMap<>(), new HashMap<>());
+        StoreNames storeName = new StoreNames(new LinkedHashMap<>(), new LinkedHashMap<>(), new LinkedHashMap<>());
         storeName.getLastNames().put("Megan", 3l);
         storeName.getLastNames().put("Jhon", 1l);
         storeName.getLastNames().put("Mary", 8l);

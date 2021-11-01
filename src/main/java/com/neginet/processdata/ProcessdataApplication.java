@@ -5,6 +5,7 @@ import static com.neginet.processdata.LoadFile.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,7 +18,7 @@ public class ProcessdataApplication {
 
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(ProcessdataApplication.class, args);
-		StoreNames storeNames = new StoreNames(new HashMap<>(), new HashMap<>(), new HashMap<>());
+		StoreNames storeNames = new StoreNames(new LinkedHashMap<>(), new LinkedHashMap<>(), new LinkedHashMap<>());
 		BufferedReader bufferedReader = readFileText("src/main/resources/coding-test-data.txt");
 		ProcessFileAndStore.process(bufferedReader, storeNames, NUMBER_LINES_PROCESSED);
 		PresentingResults.cardinality(storeNames);
