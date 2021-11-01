@@ -1,7 +1,6 @@
 package com.neginet.processdata;
 
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -24,11 +23,12 @@ public class PresentingResults {
         System.out.println("2. The most common last names are:");
         Map<String, Long> result = storeNames.getLastNames().entrySet().stream()
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .limit(10)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
                         (oldValue, newValue) -> oldValue, LinkedHashMap::new));
 
         for (Map.Entry<String, Long> entry : result.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
+            showNameAndAmount(entry);
         }
 
         System.out.println();
@@ -36,16 +36,21 @@ public class PresentingResults {
         return result;
     }
 
+    private static void showNameAndAmount(Map.Entry<String, Long> entry) {
+        System.out.println(entry.getKey() + ": " + entry.getValue());
+    }
+
     public static Map<String, Long> commonFirstNames(StoreNames storeNames) {
         System.out.println();
         System.out.println("3. The most common first names are:");
         Map<String, Long> result = storeNames.getFirstNames().entrySet().stream()
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .limit(10)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
                         (oldValue, newValue) -> oldValue, LinkedHashMap::new));
 
         for (Map.Entry<String, Long> entry : result.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
+            showNameAndAmount(entry);
         }
 
         System.out.println();
@@ -60,7 +65,6 @@ public class PresentingResults {
                 .stream()
                 .forEach(set -> System.out.println(set.getKey()));
 
-
         System.out.println();
     }
 
@@ -71,15 +75,16 @@ public class PresentingResults {
         Map<String, String> fullNamesModified = new LinkedHashMap<>();
 
         storeNames.getFullNames().entrySet().stream().forEach( fullName -> {
-            System.out.println(fullName.getKey());
             String[] fullNameSplited = fullName.getKey().replace(" ", "").split(",");
             if(!fullNamesModified.containsKey(fullNameSplited[0]) && !fullNamesModified.containsValue(fullNameSplited[1])) {
                 fullNamesModified.put(fullNameSplited[0], fullNameSplited[1]);
             }
         });
 
-        System.out.println();
-        fullNamesModified.entrySet().stream().forEach(fullNameModified -> System.out.println(fullNameModified.getKey() + ", " + fullNameModified.getValue()));
+        fullNamesModified.entrySet()
+                .stream()
+                .limit(25)
+                .forEach(fullNameModified -> System.out.println(fullNameModified.getKey() + ", " + fullNameModified.getValue()));
 
         System.out.println();
 

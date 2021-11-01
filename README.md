@@ -25,3 +25,5 @@ Steps to create project
     to generate a file.jar in processdata/target/processdata-0.0.1-SNAPSHOT.jar
     - open terminal and go to the repository where are the .jar and execute with: 
     java -jar processdata-0.0.1-SNAPSHOT.jar 
+    - To process entire file put value of parameter NUMBER_LINES_PROCESSED that are in ProcessdataApplication.java with 0,
+    or limit the lines with names that will be processed passing a diferent postive value, like 25.
